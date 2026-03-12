@@ -46,9 +46,9 @@
     .hero-overlay {
       position: absolute; inset: 0; z-index: 1;
       background: linear-gradient(100deg,
-        rgba(0,0,0,0.90) 0%,
-        rgba(0,0,0,0.60) 50%,
-        rgba(0,0,0,0.02) 100%);
+        rgba(0,0,0,0.55) 0%,
+        rgba(0,0,0,0.18) 45%,
+        rgba(0,0,0,0.00) 100%);
     }
     .hero-content {
       position: absolute; z-index: 2;
@@ -116,9 +116,9 @@
       .hero-overlay {
         display: block;
         background: linear-gradient(to top,
-          rgba(0,0,0,1)   0%,
-          rgba(0,0,0,0.85) 45%,
-          rgba(0,0,0,0)   100%);
+          rgba(0,0,0,0.92) 0%,
+          rgba(0,0,0,0.55) 38%,
+          rgba(0,0,0,0.00) 100%);
       }
       /* content sticks to bottom of the image */
       .hero-content {
@@ -281,8 +281,7 @@
     .why-ico svg { width: 22px; height: 22px; stroke: currentColor; fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
     .why-title { font-size: 1.05rem; font-weight: 800; margin-bottom: 10px; }
     .why-text { font-size: .88rem; color: var(--muted); line-height: 1.7; }
-    .why-card:last-child { grid-column: 2 / 3; }
-    @media(max-width:900px){ .why-card:last-child { grid-column: auto; } }
+    @media(max-width:900px){ .why-card { grid-column: auto; } }
 
     /* ===== CAROUSEL ===== */
     .carousel-section { background: #000; padding: 80px 0; overflow: hidden; }
@@ -327,7 +326,7 @@
     .mentor-section { background: #000; padding: 90px 5%; }
     .mentor-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: center; max-width: 1000px; margin: 50px auto 0; }
     @media(max-width:768px){ .mentor-grid{ grid-template-columns:1fr; gap:30px; } }
-    .mentor-img { width: 100%; border-radius: 14px; object-fit: cover; }
+    .mentor-img { width: 100%; border-radius: 14px; object-fit: contain; display: block; }
     .mentor-name { font-size: 2rem; font-weight: 900; color: var(--brand); margin-bottom: 18px; }
     .mentor-text { font-size: .98rem; color: var(--muted); line-height: 1.85; margin-bottom: 14px; }
     .mentor-close { font-size: 1rem; color: var(--brand); font-weight: 600; line-height: 1.7; }
@@ -418,7 +417,7 @@
 
     <span class="hero-badge">SST • Segurança do Trabalho</span>
     <h1 class="hero-h1">
-      <span class="line-intro">Primeiros passos<br>na carreira de</span>
+      <span class="line-intro">Primeiros passos na carreira de</span>
       <em class="line-sst">Segurança do Trabalho</em>
     </h1>
     <p class="hero-sub">Comece certo e conquiste<br>suas primeiras oportunidades!</p>
@@ -433,7 +432,7 @@
   <div class="container">
     <span class="tag">Isso é para você</span>
     <h2 class="pain-headline">
-      Se você tem <span style="color:#e53535">medo de errar</span> no começo<br>
+      Se você tem medo de errar no início<br>
       da carreira em Segurança do Trabalho...
     </h2>
     <p class="pain-text">
@@ -618,6 +617,14 @@
         <h3 class="why-title">Material completo para ação imediata</h3>
         <p class="why-text">Videoaulas direto ao ponto, PDFs, templates prontos e ferramentas práticas. Não perca tempo reinventando a roda.</p>
       </div>
+      <div class="why-card fade">
+        <div class="why-ico">
+          <!-- users / community icon -->
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3 class="why-title">Comunidade ativa de profissionais</h3>
+        <p class="why-text">Conecte-se com outros profissionais de SST, troque experiências, tire dúvidas e amplie sua rede de contatos na área.</p>
+      </div>
     </div>
   </div>
 </section>
@@ -730,8 +737,8 @@
     </div>
     <div class="mentor-grid">
       <div>
-        <img src="https://i.postimg.cc/7f9QvjBS/raphael.jpg" alt="Raphael Galatti" class="mentor-img"
-          onerror="this.style.background='var(--surface2)'">
+        <img src="https://i.postimg.cc/7f9QvjBS/mentor.png" alt="Raphael Galatti" class="mentor-img"
+          onerror="this.src='https://postimg.cc/7f9QvjBS';this.onerror=null;">
       </div>
       <div>
         <h3 class="mentor-name">Raphael Galatti</h3>
