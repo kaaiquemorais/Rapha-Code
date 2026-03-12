@@ -135,9 +135,11 @@
       .hero-h1 { font-size: 1.75rem; }
       .hero-sub { font-size: .92rem; margin-bottom: 22px; }
       .btn-hero { display: block; text-align: center; font-size: 15px; padding: 14px 26px; }
-      /* mobile headline colors */
-      .hero-h1 .line-sst   { display: block; color: var(--brand); }
-      .hero-h1 .line-intro { display: block; color: var(--white); }
+      /* mobile headline colors + font scale */
+      .hero-h1 .line-sst   { display: block; color: var(--brand); font-size: 1.75rem; }
+      .hero-h1 .line-intro { display: block; color: var(--white); font-size: 1.1rem; white-space: nowrap; }
+      /* hide desktop-only line breaks on mobile */
+      br.desk-br { display: none; }
     }
 
     /* ===== SHARED ===== */
@@ -420,7 +422,7 @@
       <span class="line-intro">Primeiros passos na carreira de</span>
       <em class="line-sst">Segurança do Trabalho</em>
     </h1>
-    <p class="hero-sub">Comece certo e conquiste<br>suas primeiras oportunidades!</p>
+    <p class="hero-sub">Comece certo e conquiste<br class="desk-br"> suas primeiras oportunidades!</p>
     <a href="#comprar" class="btn-hero">Acessar o Método Completo</a>
   </div>
 </section>
@@ -432,7 +434,7 @@
   <div class="container">
     <span class="tag">Isso é para você</span>
     <h2 class="pain-headline">
-      Se você tem medo de errar no início<br>
+      Se você tem <span style="color:#e53535">medo de errar</span> no início<br class="desk-br">
       da carreira em Segurança do Trabalho...
     </h2>
     <p class="pain-text">
@@ -441,7 +443,7 @@
       na prática, os primeiros 30 dias cruciais para alavancar sua carreira,
       e o caminho para uma renda mais alta parecem um mistério.
     </p>
-    <p class="good-news">A boa notícia? Não precisa ser assim. ✓</p>
+    <p class="good-news">A boa notícia? Não precisa ser assim.</p>
   </div>
 </section>
 
@@ -622,8 +624,8 @@
           <!-- users / community icon -->
           <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
-        <h3 class="why-title">Comunidade ativa de profissionais</h3>
-        <p class="why-text">Conecte-se com outros profissionais de SST, troque experiências, tire dúvidas e amplie sua rede de contatos na área.</p>
+        <h3 class="why-title">Economia de anos de tentativa e erro</h3>
+        <p class="why-text">Aprenda de forma estruturada aquilo que muitos profissionais levam anos para descobrir na prática, evitando erros comuns e acelerando seu crescimento profissional.</p>
       </div>
     </div>
   </div>
