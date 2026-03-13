@@ -380,9 +380,10 @@
     .play-float {
       position: fixed; bottom: 28px; right: 28px; z-index: 999;
       background: var(--brand); color: #000;
-      width: 58px; height: 58px; border-radius: 50%; border: none; cursor: pointer;
+      width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
       display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 22px rgba(71,231,46,0.45); transition: transform .2s;
+      box-shadow: 0 4px 24px rgba(71,231,46,0.5); transition: transform .2s;
+      padding: 0;
     }
     .play-float:hover { transform: scale(1.08); }
     .play-float svg { margin-left: 3px; }
@@ -868,37 +869,34 @@
 </footer>
 
 <!-- FLOATING PLAY BUTTON -->
+<script src="https://w.soundcloud.com/player/api.js"></script>
 <iframe id="sc-iframe"
   src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/kaaiquemorais/carreira-sst&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
-  style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;border:0;" allow="autoplay"></iframe>
+  style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;border:0;"
+  allow="autoplay"></iframe>
 
 <button class="play-float" id="play-btn" title="Ouvir apresentação">
-  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-    <path d="M8 5v14l11-7z"/>
-  </svg>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
 </button>
 
-<script src="https://w.soundcloud.com/player/api.js"></script>
 <script>
-  var scWidget = null;
-  var playing  = false;
+  var widget  = SC.Widget(document.getElementById('sc-iframe'));
+  var playing = false;
+  var ready   = false;
 
-  window.addEventListener('load', function () {
-    scWidget = SC.Widget(document.getElementById('sc-iframe'));
-  });
+  widget.bind(SC.Widget.Events.READY, function () { ready = true; });
 
   document.getElementById('play-btn').addEventListener('click', function () {
-    if (!scWidget) return;
+    if (!ready) return;
+    var btn = document.getElementById('play-btn');
     if (!playing) {
-      scWidget.play();
+      widget.play();
       playing = true;
-      document.getElementById('play-btn').innerHTML =
-        '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+      btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
     } else {
-      scWidget.pause();
+      widget.pause();
       playing = false;
-      document.getElementById('play-btn').innerHTML =
-        '<svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
+      btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
     }
   });
 </script>
