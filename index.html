@@ -871,7 +871,7 @@
 <!-- FLOATING PLAY BUTTON -->
 <script src="https://w.soundcloud.com/player/api.js"></script>
 <iframe id="sc-iframe"
-  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/avyxyva/carreira-sst&auto_play=true&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
+  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/avyxyva/carreira-sst&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
   style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;border:0;"
   allow="autoplay"></iframe>
 
@@ -886,10 +886,21 @@
 
   widget.bind(SC.Widget.Events.READY, function () {
     ready = true;
+  });
+
+  function startAudio() {
+    if (!ready || playing) return;
     widget.play();
     playing = true;
     document.getElementById('play-btn').innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-  });
+    document.removeEventListener('click', startAudio);
+    document.removeEventListener('touchstart', startAudio);
+    document.removeEventListener('scroll', startAudio);
+  }
+
+  document.addEventListener('click', startAudio);
+  document.addEventListener('touchstart', startAudio);
+  document.addEventListener('scroll', startAudio);
 
   document.getElementById('play-btn').addEventListener('click', function () {
     if (!ready) return;
