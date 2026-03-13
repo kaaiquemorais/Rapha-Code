@@ -884,7 +884,12 @@
   var playing = false;
   var ready   = false;
 
-  widget.bind(SC.Widget.Events.READY, function () { ready = true; });
+  widget.bind(SC.Widget.Events.READY, function () {
+    ready = true;
+    widget.play();
+    playing = true;
+    document.getElementById('play-btn').innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
+  });
 
   document.getElementById('play-btn').addEventListener('click', function () {
     if (!ready) return;
