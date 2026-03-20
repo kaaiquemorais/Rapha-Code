@@ -457,6 +457,9 @@
     @keyframes paradise-mute-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(calc(-10px * var(--animation-intensity))); } }
     .paradise-mute-bounce { animation: paradise-mute-bounce 1.2s ease-in-out infinite; }
     .paradise-player-container * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    @media (max-width: 768px) {
+      .paradise-player-container { max-width: 90% !important; }
+    }
 </style>
 <script>
 (function() {
