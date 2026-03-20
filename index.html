@@ -378,17 +378,6 @@
     .footer-wa:hover { transform: scale(1.05); }
 
     /* ===== FLOATING PLAY ===== */
-    .play-float {
-      position: fixed; bottom: 28px; right: 28px; z-index: 999;
-      background: var(--brand); color: #000;
-      width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 24px rgba(71,231,46,0.5); transition: transform .2s;
-      padding: 0;
-    }
-    .play-float:hover { transform: scale(1.08); }
-    .play-float svg { margin-left: 3px; }
-
     /* ===== FADE-IN ===== */
     .fade { opacity: 0; transform: translateY(24px); transition: opacity .5s ease, transform .5s ease; }
     .fade.visible { opacity: 1; transform: translateY(0); }
@@ -423,6 +412,64 @@
     <a href="https://pay.kiwify.com.br/72EUfmu" class="btn-hero">Acessar o Método Completo</a>
   </div>
 </section>
+
+<!-- ======================================================
+     VSL VIDEO
+====================================================== -->
+<div id="paradisePlayer_1774001617298Container" class="paradise-player-container" style="position: relative; width: 100%; max-width: 800px; margin: 20px auto;">
+    <div id="paradisePlayer_1774001617298Wrapper" style="position: relative; width: 100%; padding-bottom: 56.25%; background: #000; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <video
+            id="paradisePlayer_1774001617298"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; cursor: pointer;"
+            playsinline
+            webkit-playsinline
+            preload="auto"
+            oncontextmenu="return false;"
+        >
+            <source src="https://ia601605.us.archive.org/33/items/carreira-sst/Carreira%20SST.mp4" type="video/mp4">
+            Seu navegador não suporta vídeos HTML5.
+        </video>
+        <div id="paradisePlayer_1774001617298MuteOverlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: #00000000; cursor: pointer; z-index: 20; backdrop-filter: blur(2px);">
+            <div id="paradisePlayer_1774001617298MuteButton" class="paradise-mute-bounce" style="background: #00d103; padding: clamp(0.96rem, 5vw, 1.6rem) clamp(1.2rem, 7vw, 2.4rem); border-radius: 12px; text-align: center; color: white; transition: transform 0.3s ease; --animation-intensity: 1; box-shadow: 0 8px 25px rgba(0,0,0,0.3); max-width: 90vw; box-sizing: border-box;">
+                <div style="font-size: clamp(0.72rem, 2.5vw, 0.88rem); font-weight: 700; margin-bottom: 0.4rem;">Seu vídeo já começou!</div>
+                <div style="margin-bottom: 0.48rem;"><img src="https://i.postimg.cc/2j9d2jbv/R.png" alt="Unmute" style="width:clamp(2rem, 8vw, 2.8rem); height:clamp(2rem, 8vw, 2.8rem); filter: brightness(0) invert(1); display: inline-block;"></div>
+                <div style="font-size: clamp(0.64rem, 2.2vw, 0.8rem); font-weight: 500; opacity: 0.95;">Clique para ativar o som</div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    #paradisePlayer_1774001617298::-webkit-media-controls,
+    #paradisePlayer_1774001617298::-webkit-media-controls-enclosure { display: none !important; }
+    @keyframes paradise-mute-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(calc(-10px * var(--animation-intensity))); } }
+    .paradise-mute-bounce { animation: paradise-mute-bounce 1.2s ease-in-out infinite; }
+    .paradise-player-container * { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+</style>
+<script>
+(function() {
+    var video = document.getElementById('paradisePlayer_1774001617298');
+    var muteOverlay = document.getElementById('paradisePlayer_1774001617298MuteOverlay');
+    if (!video) return;
+    video.addEventListener('click', function() {
+        if (video.paused) video.play(); else video.pause();
+    });
+    video.playbackRate = 1;
+    video.muted = true;
+    var p = video.play();
+    if (p !== undefined) p.catch(function(){});
+    if (muteOverlay) {
+        function unmute() {
+            video.muted = false;
+            video.currentTime = 0;
+            video.play();
+            muteOverlay.style.opacity = '0';
+            setTimeout(function(){ muteOverlay.style.display = 'none'; }, 300);
+        }
+        muteOverlay.addEventListener('click', unmute, { once: true });
+        muteOverlay.addEventListener('touchend', unmute, { once: true });
+    }
+})();
+</script>
 
 <!-- ======================================================
      PAIN
@@ -867,40 +914,6 @@
   <p class="footer-copy">Carreira SST © Todos os direitos reservados.</p>
 </footer>
 
-<!-- FLOATING PLAY BUTTON -->
-<script src="https://w.soundcloud.com/player/api.js"></script>
-<iframe id="sc-iframe"
-  src="https://w.soundcloud.com/player/?url=https%3A//soundcloud.com/avyxyva/carreira-sst&auto_play=false&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false"
-  style="position:fixed;width:1px;height:1px;top:-9999px;left:-9999px;border:0;"
-  allow="autoplay"></iframe>
-
-<button class="play-float" id="play-btn" title="Ouvir apresentação">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-</button>
-
-<script>
-  var widget  = SC.Widget(document.getElementById('sc-iframe'));
-  var playing = false;
-  var ready   = false;
-
-  widget.bind(SC.Widget.Events.READY, function () {
-    ready = true;
-  });
-
-  document.getElementById('play-btn').addEventListener('click', function () {
-    if (!ready) return;
-    var btn = document.getElementById('play-btn');
-    if (!playing) {
-      widget.play();
-      playing = true;
-      btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>';
-    } else {
-      widget.pause();
-      playing = false;
-      btn.innerHTML = '<svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>';
-    }
-  });
-</script>
 
 <script>
   /* FAQ accordion */
